@@ -341,9 +341,9 @@ function shareText(score) {
         return '倒计时多了' + ((deviation_time / 1000) - 20).toFixed(2) + "s";
     }
     SubmitResults();
-    if (score <= 49) return '贫弱！贫弱！';
-    if (score <= 99) return '不做人啦';
-    if (score <= 149) return '真的是嗨到不行';
+    if (score <= 49) return '试着好好练一下？';
+    if (score <= 99) return 'TCL';
+    if (score <= 149) return 'TQL';
     if (score <= 199) return '您';
     return '人？';
 }
@@ -408,32 +408,9 @@ function goRank() {
     }
     window.location.href=link;
 }
-
-function click(index) {
-    let p = _gameBBList[_gameBBListIndex];
-    let base = parseInt(document.getElementById(p.id).getAttribute("num")) - p.cell;
-    let num = base + index - 1;
-    let id = p.id.substring(0, 11) + num;
-
-    let fakeEvent = {
-        clientX: ((index - 1) * blockSize + index * blockSize) / 2,
-        // Make sure that it is in the area
-        clientY: (touchArea[0] + touchArea[1]) / 2,
-        target: document.getElementById(id),
-    };
-
-    gameTapEvent(fakeEvent)
-}
-
-document.onkeydown = function(e) {
-    const map = {
-        'd': 1, 'f': 2, 'j': 3, 'k': 4
-    }
-    let key = e.key.toLowerCase();
-
-    if (Object.keys(map).indexOf(key) !== -1) {
-        click(map[key])
-    }
-}
-
 console.log("不修改，好嘛？乱传又有什么用呢？(ˉ▽ˉ；)...")
+document.onkeydown = function (e) {
+    if (e.keyCode == 123) {
+        return false
+    }
+};
